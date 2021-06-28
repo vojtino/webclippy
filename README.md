@@ -1,3 +1,5 @@
+This is a clone from https://www.smore.com/clippy.js
+
 [Clippy.JS](http://smore.com/clippy-js)
 =========
 Add Clippy or his friends to any website for instant nostalgia.  
@@ -66,4 +68,5 @@ Special Thanks
 --------------
 * The awesome [Cinnamon Software](http://www.cinnamonsoftware.com/) for developing [Double Agent](http://doubleagent.sourceforge.net/)
 the program we used to unpack Clippy and his friends!
+* Thanks to https://www.smore.com/ for doing this :)
 * Microsoft, for creating clippy :)
