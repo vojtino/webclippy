@@ -1,0 +1,22 @@
+{
+  "name": "webclippy",
+  "version": "1.0.0",
+  "description": "Simple clippy for web applications",
+  "main": "clippy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vojtino/webclippy.git"
+  },
+  "keywords": [
+    "clippy"
+  ],
+  "author": "vojtino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vojtino/webclippy/issues"
+  },
+  "homepage": "https://github.com/vojtino/webclippy#readme"
+}
