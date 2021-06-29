@@ -11,6 +11,8 @@
     <script src="../dist/clippy.min.js"></script>
     <script>
         var globalAgent = null;
+        // if agents not found, specify path where to find them, you can move agents to your liking, but don`t forget to update path
+        // clippy.BASE_PATH = '../agents/';
         clippy.load('Clippy', function(agent){
             // do anything with the loaded agent
             agent.show();
