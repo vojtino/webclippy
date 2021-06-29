@@ -147,11 +147,13 @@ clippy.Agent.prototype = {
         return true;
     },
 
-    /***
+    /**
      *
-     * @param {Boolean=} fast
+     * @param fast
+     * @param top
+     * @param left
      */
-    show:function (fast) {
+    show:function (fast, top, left) {
 
         this._hidden = false;
         if (fast) {
@@ -161,10 +163,17 @@ clippy.Agent.prototype = {
             return;
         }
 
-        if (this._el.css('top') === 'auto' || !this._el.css('left') === 'auto') {
-            var left = $(window).width() * 0.8;
-            var top = ($(window).height() + $(document).scrollTop()) * 0.8;
-            this._el.css({top:top, left:left});
+        if (top === undefined && this._el.css('top') === 'auto') {
+            top = ($(window).height() + $(document).scrollTop()) * 0.8;
+            this._el.css({top:top});
+        } else if (top !== undefined) {
+            this._el.css({top:top});
+        }
+        if (left === undefined && this._el.css('left') === 'auto') {
+            left = $(window).width() * 0.8;
+            this._el.css({left:left});
+        } else if (left !== undefined) {
+            this._el.css({left:left});
         }
 
         this.resume();
