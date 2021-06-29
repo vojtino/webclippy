@@ -1,4 +1,4 @@
-clippy.BASE_PATH = '../agents/';
+clippy.BASE_PATH = 'agents/';
 
 clippy.load = function (name, successCb, failCb) {
     var path = clippy.BASE_PATH + name;
