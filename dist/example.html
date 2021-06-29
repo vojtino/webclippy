@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="clippy.css" media="all">
+    <title>Clippy example</title>
+</head>
+<body>
+    <button>Speak</button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="clippy.min.js"></script>
+    <script>
+        clippy.load('Clippy', function(agent){
+            // do anything with the loaded agent
+            agent.show();
+        });
+    </script>
+</body>
+</html>

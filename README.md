@@ -8,7 +8,7 @@ Read more about the project on [our homepage](http://smore.com/clippy-js).
 
 Usage: Setup
 ------------
-Add this code to you to your page to enable Clippy.js.
+Add this code to you to your page to enable Clippy.js. See example.html in Dist folder.
 
 ```html
 <!-- Add the stylesheet to the head -->
