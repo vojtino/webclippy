@@ -18,6 +18,8 @@ clippy.Agent = function (path, data, sounds) {
 
     this._balloon = new clippy.Balloon(this._el);
 
+    this._shortJokes = clippy.shortJokes();
+
     this._setupEvents();
 };
 
@@ -353,7 +355,11 @@ clippy.Agent.prototype = {
 
     _onDoubleClick:function () {
         if (!this.play('ClickedOn')) {
-            this.animate();
+            if (this._shortJokes) {
+                this.speak(this._shortJokes[Math.floor(Math.random() * this._shortJokes.length)]);
+            } else {
+                this.animate();
+            }
         }
     },
 
@@ -423,7 +429,7 @@ clippy.Agent.prototype = {
     },
 
     _updateLocation:function () {
-        this._el.css({top:this._targetY, left:this._taregtX});
+        this._el.css({top:this._targetY, left:this._targetX});
         this._dragUpdateLoop = window.setTimeout($.proxy(this._updateLocation, this), 10);
     },
 
@@ -431,7 +437,7 @@ clippy.Agent.prototype = {
         e.preventDefault();
         var x = e.clientX - this._offset.left;
         var y = e.clientY - this._offset.top;
-        this._taregtX = x;
+        this._targetX = x;
         this._targetY = y;
     },
 
@@ -673,7 +679,7 @@ clippy.Balloon = function (targetEl) {
 
 clippy.Balloon.prototype = {
 
-    WORD_SPEAK_TIME:320,
+    WORD_SPEAK_TIME:200,
     CLOSE_BALLOON_DELAY:2000,
 
     _setup:function () {
@@ -705,6 +711,8 @@ clippy.Balloon.prototype = {
         var o = this._targetEl.offset();
         var h = this._targetEl.height();
         var w = this._targetEl.width();
+        o.top -= $(window).scrollTop();
+        o.left -= $(window).scrollLeft();
 
         var bH = this._balloon.outerHeight();
         var bW = this._balloon.outerWidth();
@@ -813,6 +821,7 @@ clippy.Balloon.prototype = {
         this._addWord = $.proxy(function () {
             if (!this._active) return;
             if (idx > words.length) {
+                delete this._addWord;
                 this._active = false;
                 if (!this._hold) {
                     complete();
@@ -846,12 +855,16 @@ clippy.Balloon.prototype = {
     },
 
     resume:function () {
-        if (this._addWord)  this._addWord();
-        this._hiding = window.setTimeout($.proxy(this._finishHideBalloon, this), this.CLOSE_BALLOON_DELAY);
+        if (this._addWord) {
+            this._addWord();
+        } else if (!this._hold && !this._hidden) {
+            this._hiding = window.setTimeout($.proxy(this._finishHideBalloon, this), this.CLOSE_BALLOON_DELAY);
+        }
     }
 
 
 };
+
 
 clippy.BASE_PATH = 'agents/';
 
@@ -861,6 +874,7 @@ clippy.load = function (name, successCb, failCb) {
     var mapDfd = clippy.load._loadMap(path);
     var agentDfd = clippy.load._loadAgent(name, path);
     var soundsDfd = clippy.load._loadSounds(name, path);
+    var shortJokesDfd = clippy.load._loadShortJokes(name);
 
     var data;
     agentDfd.done(function (d) {
@@ -871,6 +885,12 @@ clippy.load = function (name, successCb, failCb) {
 
     soundsDfd.done(function (d) {
         sounds = d;
+    });
+
+    var shortJokes;
+
+    shortJokesDfd.done(function (d) {
+        shortJokes = d;
     });
 
     // wrapper to the success callback
@@ -937,6 +957,19 @@ clippy.load._loadAgent = function (name, path) {
     var src = path + '/agent.js';
 
     clippy.load._loadScript(src);
+
+    return dfd.promise();
+};
+
+clippy.load._shortJokes = {};
+clippy.load._loadShortJokes = function (name) {
+    var dfd = clippy.load._shortJokes[name];
+    if (dfd) return dfd;
+
+    // set dfd if not defined
+    dfd = clippy.load._shortJokes[name] = $.Deferred();
+
+    clippy.load._loadScript(clippy.BASE_PATH + 'short_jokes.js');
 
     return dfd.promise();
 };

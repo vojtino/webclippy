@@ -1,6 +1,6 @@
 {
   "name": "webclippy",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Simple clippy for web applications",
   "main": "clippy.js",
   "scripts": {
@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/vojtino/webclippy/issues"
   },
-  "homepage": "https://github.com/vojtino/webclippy#readme"
+  "homepage": "https://github.com/vojtino/webclippy#readme",
+  "devDependencies": {
+    "laravel-mix": "^6.0.25",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.35.1",
+    "sass-loader": "^12.1.0"
+  }
 }

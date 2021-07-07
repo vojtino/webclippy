@@ -1,4 +1,12 @@
-This is a clone from https://www.smore.com/clippy.js
+This is a clone from https://www.smore.com/clippy.js with some small changes ;-)
+
+What`s different:
+------------
+* you can enter coordinates on show function as two new parameters: top, left
+```html
+agent.show(false, 100, 100);
+```
+* on double-click either a random joke from https://github.com/amoudgl/short-jokes-dataset is shown if short-jokes.js is available or a random animation is played if not
 
 [Clippy.JS](http://smore.com/clippy-js)
 =========
@@ -68,5 +76,6 @@ Special Thanks
 --------------
 * The awesome [Cinnamon Software](http://www.cinnamonsoftware.com/) for developing [Double Agent](http://doubleagent.sourceforge.net/)
 the program we used to unpack Clippy and his friends!
-* Thanks to https://www.smore.com/ for doing this :)
 * Microsoft, for creating clippy :)
+* Thanks to https://www.smore.com/ for doing the package
+* Thanks to https://github.com/amoudgl/short-jokes-dataset for nice jokes
