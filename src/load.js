@@ -6,7 +6,6 @@ clippy.load = function (name, successCb, failCb) {
     var mapDfd = clippy.load._loadMap(path);
     var agentDfd = clippy.load._loadAgent(name, path);
     var soundsDfd = clippy.load._loadSounds(name, path);
-    var shortJokesDfd = clippy.load._loadShortJokes(name);
 
     var data;
     agentDfd.done(function (d) {
@@ -17,12 +16,6 @@ clippy.load = function (name, successCb, failCb) {
 
     soundsDfd.done(function (d) {
         sounds = d;
-    });
-
-    var shortJokes;
-
-    shortJokesDfd.done(function (d) {
-        shortJokes = d;
     });
 
     // wrapper to the success callback
@@ -89,19 +82,6 @@ clippy.load._loadAgent = function (name, path) {
     var src = path + '/agent.js';
 
     clippy.load._loadScript(src);
-
-    return dfd.promise();
-};
-
-clippy.load._shortJokes = {};
-clippy.load._loadShortJokes = function (name) {
-    var dfd = clippy.load._shortJokes[name];
-    if (dfd) return dfd;
-
-    // set dfd if not defined
-    dfd = clippy.load._shortJokes[name] = $.Deferred();
-
-    clippy.load._loadScript(clippy.BASE_PATH + 'short_jokes.js');
 
     return dfd.promise();
 };
