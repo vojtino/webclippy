@@ -18,7 +18,7 @@ clippy.Agent = function (path, data, sounds) {
 
     this._balloon = new clippy.Balloon(this._el);
 
-    this._shortJokes = clippy.shortJokes();
+    this.shortJokes = clippy.shortJokes;
 
     this._setupEvents();
 };
@@ -355,8 +355,8 @@ clippy.Agent.prototype = {
 
     _onDoubleClick:function () {
         if (!this.play('ClickedOn')) {
-            if (this._shortJokes) {
-                this.speak(this._shortJokes[Math.floor(Math.random() * this._shortJokes.length)]);
+            if (this.shortJokes) {
+                this.speak(this.shortJokes[Math.floor(Math.random() * this.shortJokes.length)]);
             } else {
                 this.animate();
             }

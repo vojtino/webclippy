@@ -1,4 +1,4 @@
-clippy.shortJokes = function() { return [
+clippy.shortJokes = [
     "What did the bartender say to the jumper cables? You better not try to start anything.",
     "Don't you hate jokes about German sausage? They're the wurst!",
     "Two artists had an art contest... It ended in a draw",
@@ -1621,4 +1621,4 @@ clippy.shortJokes = function() { return [
     "'Stay strong!' I said to my wi-fi signal.",
     "Why was the tomato blushing? Because it saw the salad dressing!",
     "What is heavy forward but not backward? **ton**"
-]};
+];
