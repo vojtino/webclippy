@@ -12,8 +12,9 @@ clippy.Balloon = function (targetEl) {
 
 clippy.Balloon.prototype = {
 
-    WORD_SPEAK_TIME:200,
-    CLOSE_BALLOON_DELAY:2000,
+    WORD_SPEAK_TIME:50,
+    CLOSE_BALLOON_DELAY:5000,
+    CLOSE_BALLOON_DELAY_PER_WORD:300,
 
     _setup:function () {
 
@@ -116,6 +117,9 @@ clippy.Balloon.prototype = {
         c.width(c.width());
         c.text('');
         this.reposition();
+
+        // set close delay based on text length
+        this.CLOSE_BALLOON_DELAY = text.match(/(\w+)/g).length * this.CLOSE_BALLOON_DELAY_PER_WORD;
 
         this._complete = complete;
         this._sayWords(text, hold, complete);
